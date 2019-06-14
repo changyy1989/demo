@@ -1,12 +1,12 @@
 server:
-  port: 8080
+  port: 8082
   servlet:
     context-path: /
 
 spring:
   application:
     name: demo-springdata
-    # ÉèÖÃ¾²Ì¬ÎÄ¼şÂ·¾¶£¬js,cssµÈ
+    # è®¾ç½®é™æ€æ–‡ä»¶è·¯å¾„ï¼Œjs,cssç­‰
     mvc:
       static-path-pattern: /static/**
     http:
@@ -28,16 +28,16 @@ spring:
       ddl-auto: update
     show-sql: true
 
-# ÅäÖÃfreemarker
+  # é…ç½®freemarker
   freemarker:
-    # ÉèÖÃÄ£°åºó×ºÃû
+    # è®¾ç½®æ¨¡æ¿åç¼€å
     suffix: .ftl
-    # ÉèÖÃÎÄµµÀàĞÍ
+    # è®¾ç½®æ–‡æ¡£ç±»å‹
     content-type: text/html; charset=utf-8
-    # ÉèÖÃÒ³Ãæ±àÂë¸ñÊ½
+    # è®¾ç½®é¡µé¢ç¼–ç æ ¼å¼
     charset: UTF-8
-    # ÉèÖÃÒ³Ãæ»º´æ
+    # è®¾ç½®é¡µé¢ç¼“å­˜
     cache: false
-    # ÉèÖÃftlÎÄ¼şÂ·¾¶
+    # è®¾ç½®ftlæ–‡ä»¶è·¯å¾„
     template-loader-path: classpath:/templates/views
-  # ÉèÖÃ¾²Ì¬ÎÄ¼şÂ·¾¶£¬js,cssµÈ
+  # è®¾ç½®é™æ€æ–‡ä»¶è·¯å¾„ï¼Œjs,cssç­‰

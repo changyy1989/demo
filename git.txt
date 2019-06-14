@@ -58,7 +58,7 @@ git push
 
 版本回退
 （查看最近到最远提交日志）
-git log --prtty=oneline
+git log --pretty=oneline
 （回退版本计数：HEAD^上一个版本、HEAD~100上与100个版本）
 git reset --hard HEAD^
 （回退版本号码：回退版本commit id为3628df）
@@ -76,9 +76,6 @@ working directory--------------stage-------------history
 <———         git checkout --files         git reset --files
 
 
-
-
-
 删除文件（read.txt）
 rm read.txt
 （从版本库中删除）
@@ -86,8 +83,6 @@ git rm read.txt
 git commit -m "delete"
 （删错了）
 git checkout -- read.txt
-
-
 
 
 
@@ -100,7 +95,6 @@ git checkout -- read.txt
 合并指定分支到当前分支：git merge dev
 (fast-forward 快进模式)
 删除分支：git branch -d dev
-
 
 
 
@@ -125,7 +119,6 @@ git branch -d fea
 
 
 
-
 分支管理策略（--no-ff）（分支名字dev 文件名字read.txt）
 git checkout -b dev
 git add read.txt
@@ -135,7 +128,6 @@ git checkout master
 （fast forward合并看不出曾经做过合并，而--no-ff参数合并后的历史有分支，negative看出曾经做过合并）
 git merge --no-ff -m "merge with --no-ff" dev
 （查看分支历史 git log --graph --pretty=oneline --abbrev-commit）
-
 
 
 
@@ -164,12 +156,9 @@ git stash apply
 
 
 
-
 feature分支(分支为dev)
 （在没完全完成合并时强行删除）
 git branch -D dev
-
-
 
 
 多人协作
@@ -198,13 +187,6 @@ git commit -m "fixed"
 git push
 
 
-
-
-
-报错
-
-报错1
-
 $ git push -u origin master
 To git@github.com:TaylorApril/test.git
 ! [rejected] master -> master (fetch first)
@@ -221,9 +203,7 @@ git pull --rebase origin master
 git push -u origin master
 
 
-
 报错2
-
 $ git checkout master
 Switched to branch 'master'
 Your branch is ahead of 'origin/master' by 1 commit.

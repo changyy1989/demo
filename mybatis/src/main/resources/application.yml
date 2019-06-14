@@ -2,21 +2,21 @@ spring:
   thymeleaf:
     mode: HTML5
     encoding: UTF-8
-    # ¿ª·¢½ûÓÃ»º´æ
+    # å¼€å‘ç¦ç”¨ç¼“å­˜
     cache: false
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://192.168.1.201:3306/swaggertest
     username: root
     password: dsdb@1
-    # ¿ÉÊ¡ÂÔÇı¶¯ÅäÖÃ, sprin-boot »áÓÉurl¼ì²â³öÇı¶¯ÀàĞÍ
+    # å¯çœç•¥é©±åŠ¨é…ç½®, sprin-boot ä¼šç”±urlæ£€æµ‹å‡ºé©±åŠ¨ç±»å‹
     # driver-class-name: com.mysql.jdbc.Driver
     hikari:
       connection-timeout: 60000
 mybatis:
   mapperLocations: classpath:/mappers/*.xml
   typeAliasesPackage: com.zy.mybatis.domain
-# spring-bootÄ¬ÈÏ´òÓ¡Êä³öinfo¼¶±ğÒÔÉÏµÄ£¬¿ÉÔÚ´Ë´¦ĞŞ¸ÄÊä³ö¼¶±ğ
+# spring-booté»˜è®¤æ‰“å°è¾“å‡ºinfoçº§åˆ«ä»¥ä¸Šçš„ï¼Œå¯åœ¨æ­¤å¤„ä¿®æ”¹è¾“å‡ºçº§åˆ«
 logging:
   level:
     root: info
