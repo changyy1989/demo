@@ -1,13 +1,13 @@
-package com.zy.mongo;
+package com.zy.mybatis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MongoApplication {
+public class MybatisApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MongoApplication.class, args);
+        SpringApplication.run(MybatisApplication.class, args);
     }
 
 }

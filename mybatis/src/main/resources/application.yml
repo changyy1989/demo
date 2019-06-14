@@ -1,0 +1,22 @@
+spring:
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    # 开发禁用缓存
+    cache: false
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.1.201:3306/swaggertest
+    username: root
+    password: dsdb@1
+    # 可省略驱动配置, sprin-boot 会由url检测出驱动类型
+    # driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      connection-timeout: 60000
+mybatis:
+  mapperLocations: classpath:/mappers/*.xml
+  typeAliasesPackage: com.zy.mybatis.domain
+# spring-boot默认打印输出info级别以上的，可在此处修改输出级别
+logging:
+  level:
+    root: info

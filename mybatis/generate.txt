@@ -1,0 +1,4 @@
+配置driver路径
+配置包路径
+修改三个生成文件的路径
+运行Maven Projects中的Plugins mybatis-generator即可

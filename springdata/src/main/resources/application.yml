@@ -1,0 +1,43 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: demo-springdata
+    # 设置静态文件路径，js,css等
+    mvc:
+      static-path-pattern: /static/**
+    http:
+      encoding:
+        charset: UTF-8
+        enabled: true
+        force: true
+      multipart:
+        maxFileSize: 100Mb
+        maxRequestSize: 100Mb
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.1.201:3306/swaggertest
+    username: root
+    password: dsdb@1
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+# 配置freemarker
+  freemarker:
+    # 设置模板后缀名
+    suffix: .ftl
+    # 设置文档类型
+    content-type: text/html; charset=utf-8
+    # 设置页面编码格式
+    charset: UTF-8
+    # 设置页面缓存
+    cache: false
+    # 设置ftl文件路径
+    template-loader-path: classpath:/templates/views
+  # 设置静态文件路径，js,css等
