@@ -1,9 +1,18 @@
 spring:
-  thymeleaf:
-    mode: HTML5
-    encoding: UTF-8
-    # 开发禁用缓存
+  # 配置freemarker
+  freemarker:
+    # 设置模板后缀名
+    suffix: .html
+    # 设置页面编码格式
+    charset: UTF-8
+    # 设置页面缓存
     cache: false
+    # 设置ftl文件路径 如果控制器中有 views路径 此处不需要再次添加
+    template-loader-path: classpath:/
+    # 设置静态文件路径，js,css等
+    settings:
+      number_format: '0.##'
+
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://192.168.1.201:3306/swaggertest
@@ -11,12 +20,17 @@ spring:
     password: dsdb@1
     # 可省略驱动配置, sprin-boot 会由url检测出驱动类型
     # driver-class-name: com.mysql.jdbc.Driver
-    hikari:
-      connection-timeout: 60000
+
 mybatis:
   mapperLocations: classpath:/mappers/*.xml
   typeAliasesPackage: com.zy.mybatis.domain
-# spring-boot默认打印输出info级别以上的，可在此处修改输出级别
+  # spring boot集成mybatis的方式打印sql
+  configuration:
+    # spring-boot默认打印输出info级别以上的，可在此处修改输出级别
+    # 日志的方式打印sql
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #开启驼峰命名转换
+    map-underscore-to-camel-case: true
 logging:
   level:
-    root: info
+    com.zy.mybatis.service.impl: DEBUG

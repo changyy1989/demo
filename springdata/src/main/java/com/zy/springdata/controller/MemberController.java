@@ -2,6 +2,8 @@ package com.zy.springdata.controller;
 
 import com.zy.springdata.domain.Member;
 import com.zy.springdata.repository.MemberRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +24,8 @@ import java.util.Map;
 @RequestMapping("/member")
 public class MemberController {
 
+    private static final Logger logger = LoggerFactory.getLogger("MemberController");
+
     @Resource
     private MemberRepository MemberDao;
 
@@ -30,6 +34,11 @@ public class MemberController {
     public String test() {
         List<Member> memberList = MemberDao.findAll();
         return "YOU ARE SUCCESS!" + memberList.toString();
+    }
+
+    @RequestMapping("/test1")
+    public String test1() {
+        return "memberList";
     }
 
     /**
@@ -41,6 +50,7 @@ public class MemberController {
             Map model = new HashMap();
             List<Member> memberList = MemberDao.findAll();
             model.put("memberList", memberList);
+            logger.info("list:" + model);
             return new ModelAndView("/views/memberList", model);
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,13 +58,17 @@ public class MemberController {
         return null;
     }
 
-    @RequestMapping("/list2")
-    public String list2() {
-        Map model = new HashMap();
-        List<Member> memberList = MemberDao.findAll();
-        model.put("memberList", memberList);
-        return "/views/memberList";
+    @RequestMapping("/memberadd")
+    public ModelAndView memberadd() {
+        try {
+            Map model = new HashMap();
+            return new ModelAndView("memberadd", model);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
 
     /**
      * 添加图书

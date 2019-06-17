@@ -1,6 +1,7 @@
 package com.zy.mybatis.domain;
 
 public class TUser {
+
     private Integer userId;
 
     private String userName;

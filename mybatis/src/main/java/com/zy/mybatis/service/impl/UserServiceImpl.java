@@ -6,6 +6,8 @@ import com.zy.mybatis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author 502341194@gmail.com
  * @ClassName UserServiceImpl
@@ -19,9 +21,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private TUserMapper tUserMapper;
 
-
     @Override
     public TUser selectUserById(Integer userId) {
         return tUserMapper.selectByPrimaryKey(userId);
+    }
+
+    @Override
+    public List<TUser> getAllTuser() {
+        return tUserMapper.getAllTuser();
     }
 }
