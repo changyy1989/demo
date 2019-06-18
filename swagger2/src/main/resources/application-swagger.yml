@@ -1,0 +1,177 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: ds-service
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+    multipart:
+      maxFileSize: 100Mb
+      maxRequestSize: 100Mb
+  boot:
+    admin:
+      url: http://127.0.0.1:9999
+      username: admin
+      password: ds#monitor
+
+#数据库配置
+#master数据源
+  datasource:
+    druid:
+      master:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://192.168.1.201:3306/ds_devonline?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: ds_dev
+        password: 123456
+        initial-size: 5
+        min-idle: 5
+        max-active: 20
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 'x'
+        testWhileIdle: true
+        testOnBorrow: true
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+#cluster数据源
+      cluster:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://192.168.1.201:3306/lkgjj20190306?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: root
+        password: dsdb@1
+        initial-size: 5
+        min-idle: 5
+        max-active: 20
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 'x'
+        testWhileIdle: true
+        testOnBorrow: true
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+#政务前置库
+      zwfw:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://192.168.1.201:3306/zwfw?useUnicode=true&characterEncoding=utf8&useSSL=false
+        #url: jdbc:mysql://192.168.1.100:3306/zwfw?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: zwfw
+        password: lkgjj@zw
+        initial-size: 5
+        min-idle: 5
+        max-active: 20
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 'x'
+        testWhileIdle: true
+        testOnBorrow: true
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+
+#jpa配置
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        hbm2ddl.auto: update
+        show_sql: true
+        physical_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+
+#redis配置
+# Redis服务器地址，单机
+  redis:
+    host: 192.168.1.202
+# Redis服务器连接端口，单机
+    port: 6379
+#redis集群地址
+#spring.redis.cluster.nodes=192.168.1.202:6379,192.168.1.202:6380
+# Redis服务器连接密码（默认为空）
+    password: dsredis
+    # 连接超时时间（毫秒）
+    timeout: 0
+    # Redis数据库索引（默认为0）
+    #spring.redis.database=0
+    commandTimeout: 5000
+    pool:
+# 连接池最大连接数（使用负值表示没有限制）
+      max-active: 20
+# 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-wait: -1
+# 连接池中的最大空闲连接
+      max-idle: 5
+# 连接池中的最小空闲连接
+      min-idle: 0
+
+  #静态化配置
+  freemarker:
+    allow-request-override: false
+    cache: false
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html; charset=utf-8
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    suffix: .ftl
+    #template-loader-path: classpath:/templates/ftl
+
+# spring boot admin 监控关闭默认的安全验证
+management:
+  security:
+    enabled: false
+
+#mybatis配置
+mybatis:
+  mapper-locations: classpath*:mapping/*/*.xml
+  configuration:
+  #开启驼峰映射
+    mapUnderscoreToCamelCase: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+    log-prefix: sql.
+#mybatis分页配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+
+logging:
+  level:
+    root: info
+
+#自定义配置
+ds:
+  config:
+    #是否开发模式,开发模式免权限校验
+    isDev: false
+    #上传文件存储路径
+    uploadFilePath: dsUpload
+    #会话超时时间(单位：分钟)
+    token-timeout: 30
+    articlePath: /opt/lkgjj/front/
+    homeArticleListSize: 10
+    articlePageSize: 10
+    serviceUrl: http://127.0.0.1:8082/services
+    #短信接口地址
+    messageInterfaceUrl: http://127.0.0.1:8083/MessageService
+    #电子签章接口地址
+    signWebseviceUrl: http://192.168.1.101:8080/sign/services/signservice?wsdl
+
+#ftp文件传输
+ftpClient:
+  ip: 192.168.1.101 #192.168.1.101
+  port: 21
+  username: administrator #administrator
+  password: 123.com #123.com
+  localBasePath: F://test/ #service系统文件起始路径 F://test/
+  ftpPath: / # 内网业务系统ftp服务根目录（必须：否则同一连接中上传多个问件时会存在切换目录问题）
