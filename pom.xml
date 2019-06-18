@@ -4,6 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.springframework.boot</groupId>
+        <!-- 一定要有spring-boot-starter-parent,其中包含了spring的各种插件版本号 -->
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.5.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
@@ -14,11 +15,21 @@
     <name>demo</name>
     <description>Demo project for Spring Boot</description>
 
+    <!-- 父类统一管理版本信息 -->
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- springboot 默认java版本是1.6,这里显示给它指定为1.7 -->
         <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <!-- 导入spring boot的web支持,可以不写版本号,在spring-boot-starter-parent已经包含 -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>

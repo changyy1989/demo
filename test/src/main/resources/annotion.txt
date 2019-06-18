@@ -1,0 +1,43 @@
+@SpringBootApplication注解分析
+
+@SpringBootApplication是一个复合注解，包括@ComponentScan，@SpringBootConfiguration，@EnableAutoConfiguration。
+
+1.@SpringBootConfiguration继承自@Configuration，二者功能也一致，标注当前类是配置类，
+并会将当前类内声明的一个或多个以@Bean注解标记的方法的实例纳入到srping容器中，并且实例名就是方法名。
+
+2.@EnableAutoConfiguration的作用启动自动的配置。
+
+3.@EnableAutoConfiguration注解的意思就是Springboot根据你添加的jar包来配置你项目的默认配置，比如根据spring-boot-starter-web，来判断你的项目是否需要添加了webmvc和tomcat，就会自动的帮你配置web项目中所需要的默认配置。在下面博客会具体分析这个注解，快速入门的demo实际没有用到该注解。
+
+4.@ComponentScan，扫描当前包及其子包下被@Component，@Controller，@Service，@Repository注解标记的类并纳入到spring容器中进行管理。
+是以前的<context:component-scan>（以前使用在xml中使用的标签，用来扫描包配置的平行支持）。
+
+@ResponseBody
+
+表示该方法的返回结果直接写入HTTP response body中，一般在异步获取数据时使用，用于构建RESTful的api。
+在使用@RequestMapping后，返回值通常解析为跳转路径，加上@esponsebody后返回结果不会被解析为跳转路径，而是直接写入HTTP response body中。
+比如异步获取json数据，加上@Responsebody后，会直接返回json数据。该注解一般会配合@RequestMapping一起使用
+
+@Controller
+
+用于定义控制器类，在spring项目中由控制器负责将用户发来的URL请求转发到对应的服务接口（service层），一般这个注解在类中，通常方法需要配合注解@RequestMapping
+
+@RestController
+
+用于标注控制层组件(如struts中的action)，@ResponseBody和@Controller的合集。
+
+@Service
+
+一般用于修饰service层的组件
+
+@Repository
+
+使用@Repository注解可以确保DAO或者repositories提供异常转译，这个注解修饰的DAO或者repositories类会被ComponetScan发现并配置，同时也不需要为它们提供XML配置项。
+
+@Bean
+
+用@Bean标注方法等价于XML中配置的bean。
+
+@Value
+
+注入Spring boot application.properties配置的属性的值。

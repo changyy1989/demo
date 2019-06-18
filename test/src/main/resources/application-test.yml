@@ -1,0 +1,8 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.1.201:3306/swaggertest
+    username: root
+    password: dsdb@1
